@@ -1,0 +1,35 @@
+1.	ADDITION OF TWO 8‐BIT NUMBERS
+AIM:
+
+To perform addition of two 8‐bit numbers using 8085.
+
+ALGORITHM:
+
+1)	Load first data into accumulator.
+2)	Move the data to register B.
+3)	Load the second data into accumulator.
+4)	Add register B to the accumulator.
+5)	Check for carry.
+6)	Store the sum and carry into memory.
+7)	Terminate the program.
+
+PROGRAM:
+
+Label	Mnemonics	Hex Code	Description
+	MVI C, 00	0E 00	Initialize register C to 00
+	LDA 1000	3A 1000	Load value to accumulator
+	MOV B, A	47	Move content of accumulator to register B
+	LDA 1001	3A 1001	Load value to accumulator
+	ADD B	80	Add register B to accumulator
+	JNC LOOP	D2 LOOP	Jump on no carry
+	INR C	0C	Increment value of register C
+LOOP:	STA 2000	32 2000	Store value of accumulator to memory
+	MOV A, C	79	Move content of register C to accumulator
+	STA 2001	32 2001	Store value of accumulator to memory
+	HLT	76	Halt program
+
+RESULT:
+Input:	1000: 82
+1001: 85
+Output:	2000: 07
+2001: 01
