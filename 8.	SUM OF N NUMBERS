@@ -1,0 +1,43 @@
+8.	SUM OF N NUMBERS
+AIM:
+
+To calculate the sum of n given numbers using 8085.
+
+ALGORITHM:
+
+1)	Set the memory pointer with the address of first data.
+2)	Load first data (number of elements)into register B.
+3)	Initialize accumulator and register C by zero.
+4)	Increment memory address pointer.
+5)	Add memory data to accumulator.
+6)	Check for carry and increment register C accordingly.
+7)	Decrement register B.
+8)	Repeat steps 4 through 7 until B is zero.
+9)	Store the sum and carry into memory.
+10)	Terminate the program.
+
+PROGRAM:
+
+Label	Mnemonics	Hex Code	Description
+	LXI H, 1000	21 1000	Load HL register pair with the starting address
+	MOV B,M	46	Move content of memory location to register B
+	MVI A,00	3E 00	Initialize accumulator to 00
+	MVI C,00	0E 00	Initialize register C to 00
+LOOP:	INX H	23	Increment value of HL register pair
+	ADD M	86	Add content of memory location to accumulator
+	JNC NEXT	D2 NEXT	Jump on no carry
+	INR C	0C	Increment value of register C
+NEXT:	DCR B	05	Decrement value of register B
+	JNZ LOOP	C2 LOOP	Jump on no zero
+	STA 2000	32 2000	Store value of accumulator to memory
+	MOV A,C	79	Move content of register C to accumulator
+	STA 2001	32 2001	Store value of accumulator to memory
+	HLT	76	Halt program
+RESULT:
+
+Input:	1000: 05	1001: 85
+	1002: 25	1003: E7
+
+Output:	1004: 9A
+2000: 87	1005: 5C
+2001: 02
