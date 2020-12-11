@@ -1,0 +1,40 @@
+3.	ADDITION OF TWO 16‐BIT NUMBERS
+AIM:
+
+To perform addition of two 16‐bit numbers using 8085.
+
+ALGORITHM:
+
+1)	Load first data into HL register pair.
+2)	Move the data from HL pair to DE register pair.
+3)	Load the second data into HL register pair.
+4)	Add DE register pair to HL register pair.
+5)	Check for carry.
+6)	Store the result and carry into memory.
+7)	Terminate the program.
+
+PROGRAM:
+
+Label	Mnemonics	Hex Code	Description
+	MVI C, 00	0E 00	Initialize register C to 00
+	LHLD 1000	2A 1000	Load value to HL register pair
+	XCHG	EB	Exchange HL register pair with DE register pair
+	LHLD 1002	2A 1001	Load value to HL register pair
+	DAD D	19	Add DE register pair to HL register pair
+	JNC LOOP	D2 LOOP	Jump on no carry
+	INR C	0C	Increment value of register C
+LOOP:	SHLD 2000	22 2000	Store value of HL register pair to memory
+	MOV A, C	79	Move content of register C to accumulator
+	STA 2002	32 2001	Store value of accumulator to memory
+	HLT	76	Halt program
+
+RESULT:
+Input:	1000: 36
+1001: 9A
+1002: 15
+1003: 7C
+
+Output:	2000: 4B
+2001: 16
+2002: 01
+ 
