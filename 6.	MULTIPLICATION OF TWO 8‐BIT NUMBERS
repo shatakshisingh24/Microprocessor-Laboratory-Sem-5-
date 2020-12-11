@@ -1,0 +1,40 @@
+6.	MULTIPLICATION OF TWO 8‐BIT NUMBERS
+AIM:
+
+To perform multiplication of two 8‐bit numbers using 8085.
+
+ALGORITHM:
+
+1)	Load first data and move to register B.
+2)	Load second data and move to register D.
+3)	Initialize accumulator and register C by zero.
+4)	Add register B to accumulator.
+5)	Check for carry and increment register C accordingly.
+6)	Decrement register D.
+7)	Repeat steps 6 through 8 until D is zero.
+8)	Store the result and carry into memory.
+9)	Terminate the program.
+
+PROGRAM:
+
+Label	Mnemonics	Hex Code	Description
+	LDA 1000	3A 1000	Load value to accumulator
+	MOV B, A	47	Move content of accumulator to register B
+	LDA 1001	3A 1001	Load value to accumulator
+	MOV D, A	57	Move content of accumulator to register D
+	MVI A, 00	3E 00	Initialize accumulator to 00
+	MVI C, 00	0E 00	Initialize register C to 00
+LOOP:	ADD B	80	Add register B to accumulator
+	JNC NEXT	D2 NEXT	Jump on no carry
+	INR C	0C	Increment value of register C
+NEXT:	DCR D	15	Decrement value of register D
+	JNZ LOOP	C2 LOOP	Jump on no zero
+	STA 2000	32 2000	Store value of accumulator to memory
+	MOV A, C	79	Move content of register C to accumulator
+	STA 2001	32 2001	Store value of accumulator to memory
+	HLT	76	Halt program
+RESULT:
+Input:	1000: 25
+1001: 15
+Output:	2000: 09
+2001: 03
