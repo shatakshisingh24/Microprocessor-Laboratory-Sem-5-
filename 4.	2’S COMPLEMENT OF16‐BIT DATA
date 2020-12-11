@@ -1,0 +1,37 @@
+4.	2’S COMPLEMENT OF16‐BIT DATA
+AIM:
+
+To find 2’s complement of 16‐bit number using 8085.
+
+ALGORITHM:
+
+1)	Load data into HL register pair.
+2)	Move low‐order byte (L) to accumulator.
+3)	Complement accumulator content.
+4)	Move accumulator to register L.
+5)	Do step 2 to 4 for high‐order byte (H).
+6)	Increment HL register pair.
+7)	Store the result into memory.
+8)	Terminate the program.
+
+PROGRAM:
+
+Label	Mnemonics	Hex Code	Description
+	LHLD 1000	2A 1000	Load value to HL register pair
+	MOV A, L	7D	Move content of register L to accumulator
+	CMA	2F	Complement accumulator content
+	MOV L, A	6F	Move content of accumulator to register L
+	MOV A, H	7C	Move content of register H to accumulator
+	CMA	2F	Complement accumulator content
+	MOV H, A	67	Move content of accumulator to register H
+	INX H	23	Increment value of HL register pair
+	SHLD 2000	22 2000	Store value of HL register pair to memory
+	HLT	76	Halt program
+
+RESULT:
+Input:	1000: 05
+1001: 12
+
+Output:	2000: FB
+2001: ED
+ 
