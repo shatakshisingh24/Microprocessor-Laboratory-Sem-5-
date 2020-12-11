@@ -1,0 +1,31 @@
+9.	FIND THE LARGEST OF TWO NUMBERS
+AIM:
+
+To find the largest between two given numbers using 8085.
+
+ALGORITHM:
+
+1)	Load first data into accumulator.
+2)	Move the data to register B.
+3)	Load the second data into accumulator.
+4)	Compare both the numbers.
+5)	If register value is greater than accumulator, copy register into accumulator.
+6)	Store the result into memory.
+7)	Terminate the program.
+
+PROGRAM:
+
+Label	Mnemonics	Hex Code	Description
+	LDA 1000	3A 1000	Load value to accumulator
+	MOV B, A	47	Move content of accumulator to register B
+	LDA 1001	3A 1001	Load value to accumulator
+	CMP B	B8	Compare accumulator and register B
+	JNC NEXT	D2 NEXT	Jump on no carry
+	MOV A, B	78	Move content of register B to accumulator
+NEXT:	STA 2000	32 2000	Store value of accumulator to memory
+	HLT	76	Halt program
+
+RESULT:
+Input:	1000: 45
+1001: 15
+Output:	2000: 45
