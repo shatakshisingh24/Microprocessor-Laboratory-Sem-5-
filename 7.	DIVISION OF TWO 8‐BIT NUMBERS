@@ -1,0 +1,39 @@
+7.	DIVISION OF TWO 8‐BIT NUMBERS
+AIM:
+
+To perform division of two 8‐bit numbers using 8085.
+
+ALGORITHM:
+
+1)	Load divisor and move to register B.
+2)	Load dividend into accumulator.
+3)	Initialize register C (quotient) by zero.
+4)	Compare dividend with divisor.
+5)	Subtract register B (divisor)from accumulator.
+6)	Increment register C.
+7)	Repeat steps 4 through 6 until dividend is less than divisor.
+8)	Store remainder (accumulator) and quotient (register C) into memory.
+9)	Terminate the program.
+
+PROGRAM:
+
+Label	Mnemonics	Hex Code	Description
+	MVI C, 00	0E 00	Initialize register C to 00
+	LDA 1001	3A 1000	Load divisor to accumulator
+	MOV B, A	47	Move content of accumulator to register B
+	LDA 1000	3A 1001	Load dividend to accumulator
+LOOP:	CMP B	B8	Compare accumulator and register B
+	JC NEXT	DA NEXT	Jump on carry
+	SUB B	90	Subtract register B from accumulator
+	INR C	0C	Increment value of register C (quotient)
+	JMP LOOP	C3 LOOP	Jump
+NEXT:	STA 2000	32 2000	Store value of accumulator to memory
+	MOV A, C	79	Move content of register C to accumulator
+	STA 2001	32 2001	Store value of accumulator to memory
+	HLT	76	Halt program
+
+RESULT:	
+Input:	1000: F0
+1001: 15	(dividend) (divisor)
+Output:	2000: 09
+2001: 0B	(remainder) (quotient)
